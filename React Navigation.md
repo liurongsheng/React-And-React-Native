@@ -239,9 +239,11 @@ const DrawerNav = DrawerNavigator({
 - this.props.navigation.setParams: 该方法允许界面更改router中的参数，可以用来动态的更改导航栏的内容
 
 - this.props.navigation.dispatch: 可以dispatch一些action，主要支持的action有：
-
     - Navigate:
+    - Reset: Reset方法会清除原来的路由记录，添加上新设置的路由信息, 可以指定多个action，index是指定默认显示的那个路由页面, 注意不要越界了
+    - SetParams: 为指定的router更新参数，该参数必须是已经存在于router的param中
 ```javascript
+//Navigate
 import { NavigationActions } from 'react-navigation'
 
 const navigationAction = NavigationActions.navigate({
@@ -253,8 +255,9 @@ const navigationAction = NavigationActions.navigate({
 })
 this.props.navigation.dispatch(navigationAction)
 ```
-    - Reset: Reset方法会清除原来的路由记录，添加上新设置的路由信息, 可以指定多个action，index是指定默认显示的那个路由页面, 注意不要越界了
+
 ```javascript
+//Reset
 import { NavigationActions } from 'react-navigation'
 
 const resetAction = NavigationActions.reset({
@@ -267,9 +270,8 @@ const resetAction = NavigationActions.reset({
 this.props.navigation.dispatch(resetAction)
 ```
 
-    - SetParams: 为指定的router更新参数，该参数必须是已经存在于router的param中
 ```javascript
-
+//SetParams
 import { NavigationActions } from 'react-navigation'
 
 const setParamsAction = NavigationActions.setParams({
@@ -301,5 +303,5 @@ Navigation Actions
 }
 ```
 1. js组件在注册路由时设置唯一的路径path, 例如Home2: { screen: Home2, path:'app/Home2' };
-1. 在手机浏览器访问demo4://app/Home2, 弹窗选择打开, 就可以打开demo4 app并进到Home2页面了.
+1. 在手机浏览器访问demo4://app/Home2, 弹窗选择打开, 就可以打开demo4 app并进到Home2页面了
 
