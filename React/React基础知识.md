@@ -1,3 +1,40 @@
+## 脚手架
+
+registerServiceWorker.js
+PWA progressive web application 的概念
+让用户只要访问一次我们的网页，就在本地会有一个缓存，即使没有网络，依然可以使网页，相当于一个App来使用
+
+manifest.json 
+如果可以当成App来使用，那么可以设置桌面快捷方式，manifest.json 文件就是设置快捷方式的配置文件，在 index.html 中有引用，不使用可以删除
+
+如果不需要都可以删除，记得把调用也给删除即可。
+
+脚手架中 3 个文件最重要
+- public\index.html // 网页调用
+- src\App.js // 负责显示内容
+- src\index.js // 整个程序运行的入口
+
+import { Component } from 'react';
+等价于
+import React from 'react';
+const Component = React.Component;
+
+class App exents Component {
+	...
+}
+===
+import React from 'react';
+class App exents React.Component {
+	...
+}
+===
+import React { Component } from 'react';
+class App exents Component {
+	...
+}
+
+ReactDOM.render 把组件挂载在指定的标签中
+
 ## 什么是 JSX (JavaScriptXML)
 
 JSX 只是一种 Facebook 普及的标记语法，提供了一种在JavaScript中编写声明式的XML的方法，使用JSX可以提高组件的可读性，
@@ -12,6 +49,10 @@ React允许做简单的JSX语法转化，受益于 Babel/TSC 这些工具 ——
 - 抽象了React Element的创建过程；
 - 允许使用熟悉的语法来定义HTML元素树；
 - 可以随时掌控HTML标签以及生成这些标签的代码；
+
+
+## 页面看起来没用使用 React 为什么需要 import React from 'react';
+组件使用 JSX (<App />) 语法，必须引入 React
 
 ## 定义第一个组件
 
@@ -79,7 +120,7 @@ var HelloWorld = React.createClass({displayName:"HelloWorld ",
 
 ## 为什么 JSX 中的组件名要以大写字母开头
 
-React 如何知道要渲染的是组件还是 HTML 元素
+React 如何知道要渲染的是组件还是 HTML 元素，组件必须是大写开头。一般在JSX语法中，大写的标签是组件，小写的标签是 h5 标签
 额外加分点：此规则有很多例外。例如：把一个组件赋给 this.component 并且写 <this.component /> 也会起作用
 
 ## 为什么用 componentDidMount 而不是 constructor 执行向 API 的数据请求
