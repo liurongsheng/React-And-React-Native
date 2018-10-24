@@ -56,3 +56,41 @@ dangerouslySetInnerHTML = {{__html: item}}
 <label htmlFor="insertArea">输入内容</label>
 <input id="insertArea" onChange={this.handleInputChange.bind(this)}/>
 
+## this.setState 对象返回 升级为 函数式返回 实现异步操作，提升性能
+
+this.setState({
+  list: [...this.state.list, this.state.inputValue],
+	inputValue: e.target.value
+})
+
+函数返回一个对象
+
+this.setState((prevState) => ({
+	list: [...prevState.list, prevState.inputValue],
+	inputValue: e.target.value
+}))
+
+因为是异步操作，这里的 e.target.value 会有问题，先给 e.target.value 存在外层
+
+const value = e.target.value
+this.setState((prevState) => ({
+	list: [...prevState.list, prevState.inputValue],
+	inputValue: value
+}))
+
+prevState 是修改数据之前的数据，等价this.state
+
+## PropTypes 和 DefaultProps
+父组件调用子组件，子组件接收外部的值，进行强校验，会在 console 中提示
+
+TodoItem.propTypes = {
+	content0 : PropTypes.string.isRequired,
+	content1 : PropTypes.string,
+	content2 : PropTypes.func,
+	content3 : PropTypes.number,
+}
+
+TodoItem.DefaultProps = {
+	content0 : 'hello' // 提供默认值
+}
+
