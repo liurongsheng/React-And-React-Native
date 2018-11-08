@@ -55,3 +55,14 @@ let columns = [{
         <Link to={`/tradingCenter/trade/${paramType}/${row.id}`}>详情</Link>)
     }];
 ```
+
+使用系列号问题
+```
+{ 
+title: '序号',
+className: 'column-middle', 
+dataIndex: 'key', 
+render: (k, row, index) => index/1+1 
+},
+```
+`k, row, index` 这里必须使用三个参数，第三个参数才是 index，index 需要强制装换为数字，所以使用 index/1 
